@@ -1,6 +1,7 @@
 Android Architecture Components Basic Sample
 ===================================
 
+This standalone project is a subset of [Android Architecture Components samples](https://github.com/googlesamples/android-architecture-components)<br/> 
 This sample showcases the following Architecture Components:
 
 * [Room](https://developer.android.com/topic/libraries/architecture/room.html)
