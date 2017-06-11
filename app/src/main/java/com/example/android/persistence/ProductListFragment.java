@@ -36,6 +36,11 @@ import com.example.android.persistence.viewmodel.ProductListViewModel;
 
 import java.util.List;
 
+/**
+ * -au
+ * A lifecycle aware component
+ *
+ */
 public class ProductListFragment extends LifecycleFragment {
 
     public static final String TAG = "ProductListViewModel";

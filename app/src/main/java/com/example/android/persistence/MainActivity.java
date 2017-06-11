@@ -22,6 +22,13 @@ import android.support.annotation.Nullable;
 import android.arch.lifecycle.LifecycleActivity;
 import com.example.android.persistence.model.Product;
 
+/**
+ * -au
+ * notice that we're extending LifecycleActivity (which extends FragmentActivity)
+ * and not AppCompatActivity (which also extends FragmentActivity)
+ * It means we don't have embedded Toolbar support.
+ * In release 1.0 of LifecycleActivity it will extend AppCompatActivity.
+ */
 public class MainActivity extends LifecycleActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +42,12 @@ public class MainActivity extends LifecycleActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment, ProductListFragment.TAG).commit();
         }
+
+        // -au
+        // we can create components here that will depend on LifecycleRegistry
+        // using getLifecycle()
+        // see ProductListFragment for a useage example
+
     }
 
     /** Shows the product detail fragment */
