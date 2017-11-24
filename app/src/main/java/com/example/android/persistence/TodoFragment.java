@@ -1,6 +1,7 @@
 package com.example.android.persistence;
 
 import android.arch.lifecycle.LifecycleFragment;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;

@@ -22,7 +22,7 @@
 
         <include
             layout="@layout/todo_item"
-            app:todo_task="@{todoTaskViewModel.todo}"/>
+            app:todoTask="@{todoTaskViewModel.todoTask}"/>
 
 
     </LinearLayout>

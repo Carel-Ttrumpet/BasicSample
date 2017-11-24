@@ -37,6 +37,7 @@ public class TodoListFragment extends LifecycleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.todo_list_fragment, container, false);
+        mTodoItemAdapter = new TodoTaskAdapter();
 
         mBinding.todoList.setAdapter(mTodoItemAdapter);
 

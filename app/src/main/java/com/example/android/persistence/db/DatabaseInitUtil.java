@@ -16,11 +16,12 @@
 
 package com.example.android.persistence.db;
 
+import android.util.Log;
+
 import com.example.android.persistence.db.entity.CommentEntity;
 import com.example.android.persistence.db.entity.ProductEntity;
 import com.example.android.persistence.db.entity.TodoTaskEntity;
 import com.example.android.persistence.model.Product;
-import com.example.android.persistence.model.TodoTask;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,7 @@ class DatabaseInitUtil {
     static void initializeDb(AppDatabase db) {
         List<ProductEntity> products = new ArrayList<>(FIRST.length * SECOND.length);
         List<CommentEntity> comments = new ArrayList<>();
-        List<TodoTaskEntity> todoTasks = new ArrayList<>();
+        List<TodoTaskEntity> todoTasks = new ArrayList<>(3);
 
         generateData(products, comments, todoTasks);
 
@@ -84,8 +85,13 @@ class DatabaseInitUtil {
 
         TodoTaskEntity todoTask2 = new TodoTaskEntity();
         todoTask2.setDescription("Learn Fragments");
-        todoTask2.setCompleted(true);
+        todoTask2.setCompleted(false);
         todoTasks.add(todoTask2);
+
+        TodoTaskEntity todoTask3 = new TodoTaskEntity();
+        todoTask3.setDescription("Learn Data binding");
+        todoTask3.setCompleted(false);
+        todoTasks.add(todoTask3);
 
     }
 

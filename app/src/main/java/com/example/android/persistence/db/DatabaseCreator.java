@@ -96,7 +96,7 @@ public class DatabaseCreator {
                         AppDatabase.class, DATABASE_NAME).build();
 
                 // Add a delay to simulate a long-running operation
-                addDelay();
+                //addDelay();
 
                 // Add some data to the database
                 DatabaseInitUtil.initializeDb(db);

@@ -33,11 +33,6 @@ public class TodoTaskEntity implements TodoTask {
         return id;
     }
 
-    @Override
-    public int getTodoTaskId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }

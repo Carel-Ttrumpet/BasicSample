@@ -41,15 +41,15 @@ public class TodoTaskViewModel extends AndroidViewModel {
 
     private final LiveData<TodoTaskEntity> mObservableTodoTask;
 
-    public ObservableField<TodoTaskEntity> todo = new ObservableField<>();
+    public ObservableField<TodoTaskEntity> todoTask = new ObservableField<>();
 
     private final int mTodoTaskId;
 
   
 
-    public TodoTaskViewModel(@NonNull Application application, final int todoId) {
+    public TodoTaskViewModel(@NonNull Application application, final int todoTaskId) {
         super(application);
-        mTodoTaskId = todoId;
+        mTodoTaskId = todoTaskId;
 
         final DatabaseCreator databaseCreator = DatabaseCreator.getInstance(this.getApplication());
 
@@ -78,15 +78,15 @@ public class TodoTaskViewModel extends AndroidViewModel {
         return mObservableTodoTask;
     }
 
-    public void setTodoTask(TodoTaskEntity todo) {
-        this.todo.set(todo);
+    public void setTodoTask(TodoTaskEntity todoTask) {
+        this.todoTask.set(todoTask);
     }
 
     /**
-     * A creator is used to inject the todo ID into the ViewModel
+     * A creator is used to inject the todoTask ID into the ViewModel
      * <p>
      * This creator is to showcase how to inject dependencies into ViewModels. It's not
-     * actually necessary in this case, as the todo ID can be passed in a public method.
+     * actually necessary in this case, as the todoTask ID can be passed in a public method.
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -95,9 +95,9 @@ public class TodoTaskViewModel extends AndroidViewModel {
 
         private final int mTodoTaskId;
 
-        public Factory(@NonNull Application application, int todoId) {
+        public Factory(@NonNull Application application, int todoTaskId) {
             mApplication = application;
-            mTodoTaskId = todoId;
+            mTodoTaskId = todoTaskId;
         }
 
         @Override
