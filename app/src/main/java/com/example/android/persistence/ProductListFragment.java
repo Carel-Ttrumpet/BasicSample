@@ -27,7 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.persistence.databinding.ListFragmentBinding;
+import com.example.android.persistence.databinding.ProductListFragmentBinding;
 import com.example.android.persistence.db.entity.ProductEntity;
 import com.example.android.persistence.model.Product;
 import com.example.android.persistence.ui.ProductAdapter;
@@ -47,13 +47,13 @@ public class ProductListFragment extends LifecycleFragment {
 
     private ProductAdapter mProductAdapter;
 
-    private ListFragmentBinding mBinding;
+    private ProductListFragmentBinding  mBinding;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.product_list_fragment, container, false);
 
         mProductAdapter = new ProductAdapter(mProductClickCallback);
         mBinding.productsList.setAdapter(mProductAdapter);

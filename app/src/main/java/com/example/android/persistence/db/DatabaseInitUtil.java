@@ -18,7 +18,9 @@ package com.example.android.persistence.db;
 
 import com.example.android.persistence.db.entity.CommentEntity;
 import com.example.android.persistence.db.entity.ProductEntity;
+import com.example.android.persistence.db.entity.TodoTaskEntity;
 import com.example.android.persistence.model.Product;
+import com.example.android.persistence.model.TodoTask;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,13 +45,14 @@ class DatabaseInitUtil {
     static void initializeDb(AppDatabase db) {
         List<ProductEntity> products = new ArrayList<>(FIRST.length * SECOND.length);
         List<CommentEntity> comments = new ArrayList<>();
+        List<TodoTaskEntity> todoTasks = new ArrayList<>();
 
-        generateData(products, comments);
+        generateData(products, comments, todoTasks);
 
-        insertData(db, products, comments);
+        insertData(db, products, comments, todoTasks);
     }
 
-    private static void generateData(List<ProductEntity> products, List<CommentEntity> comments) {
+    private static void generateData(List<ProductEntity> products, List<CommentEntity> comments, List<TodoTaskEntity> todoTasks) {
         Random rnd = new Random();
         for (int i = 0; i < FIRST.length; i++) {
             for (int j = 0; j < SECOND.length; j++) {
@@ -73,13 +76,25 @@ class DatabaseInitUtil {
                 comments.add(comment);
             }
         }
+
+        TodoTaskEntity todoTask1 = new TodoTaskEntity();
+        todoTask1.setDescription("Learn Android LifeCycleComponents");
+        todoTask1.setCompleted(true);
+        todoTasks.add(todoTask1);
+
+        TodoTaskEntity todoTask2 = new TodoTaskEntity();
+        todoTask2.setDescription("Learn Fragments");
+        todoTask2.setCompleted(true);
+        todoTasks.add(todoTask2);
+
     }
 
-    private static void insertData(AppDatabase db, List<ProductEntity> products, List<CommentEntity> comments) {
+    private static void insertData(AppDatabase db, List<ProductEntity> products, List<CommentEntity> comments, List<TodoTaskEntity> todoTasks ) {
         db.beginTransaction();
         try {
             db.productDao().insertAll(products);
             db.commentDao().insertAll(comments);
+            db.todoTaskDao().insertAll(todoTasks);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
