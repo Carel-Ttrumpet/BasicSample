@@ -83,8 +83,7 @@ public class DatabaseCreator {
 
             @Override
             protected Void doInBackground(Context... params) {
-                Log.d("DatabaseCreator",
-                        "Starting bg job " + Thread.currentThread().getName());
+                Log.d("DatabaseCreator", "Starting bg job " + Thread.currentThread().getName());
 
                 Context context = params[0].getApplicationContext();
 
@@ -115,9 +114,4 @@ public class DatabaseCreator {
         }.execute(context.getApplicationContext());
     }
 
-    private void addDelay() {
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException ignored) {}
-    }
 }

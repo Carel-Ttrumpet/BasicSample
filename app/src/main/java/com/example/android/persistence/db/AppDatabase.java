@@ -18,25 +18,14 @@ package com.example.android.persistence.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
-
-import com.example.android.persistence.db.dao.CommentDao;
-import com.example.android.persistence.db.dao.ProductDao;
 import com.example.android.persistence.db.dao.TodoTaskDao;
-import com.example.android.persistence.db.entity.CommentEntity;
-import com.example.android.persistence.db.entity.ProductEntity;
-import com.example.android.persistence.db.converter.DateConverter;
 import com.example.android.persistence.db.entity.TodoTaskEntity;
 
-@Database(entities = {ProductEntity.class, CommentEntity.class, TodoTaskEntity.class}, version = 1)
-@TypeConverters(DateConverter.class)
+@Database(entities = { TodoTaskEntity.class}, version = 1)
+
 public abstract class AppDatabase extends RoomDatabase {
 
     static final String DATABASE_NAME = "basic-sample-db";
-
-    public abstract ProductDao productDao();
-
-    public abstract CommentDao commentDao();
 
     public abstract TodoTaskDao todoTaskDao();
 
