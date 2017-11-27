@@ -22,6 +22,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
+import android.util.Log;
 
 import com.example.android.persistence.db.DatabaseCreator;
 import com.example.android.persistence.db.entity.ProductEntity;
@@ -48,6 +49,7 @@ public class ProductListViewModel extends AndroidViewModel {
                 new Function<Boolean, LiveData<List<ProductEntity>>>() {
             @Override
             public LiveData<List<ProductEntity>> apply(Boolean isDbCreated) {
+                Log.w("databaseCreated changed", isDbCreated.toString());
                 if (!Boolean.TRUE.equals(isDbCreated)) { // Not needed here, but watch out for null
                     //noinspection unchecked
                     return ABSENT;

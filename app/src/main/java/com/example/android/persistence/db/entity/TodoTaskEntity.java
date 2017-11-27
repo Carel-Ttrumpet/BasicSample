@@ -23,7 +23,7 @@ import com.example.android.persistence.model.TodoTask;
 
 @Entity(tableName = "todo_tasks")
 public class TodoTaskEntity implements TodoTask {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String description;
     private Boolean completed;

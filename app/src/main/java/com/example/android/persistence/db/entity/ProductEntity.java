@@ -23,7 +23,8 @@ import com.example.android.persistence.model.Product;
 
 @Entity(tableName = "products")
 public class ProductEntity implements Product {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+
     private int id;
     private String name;
     private String description;

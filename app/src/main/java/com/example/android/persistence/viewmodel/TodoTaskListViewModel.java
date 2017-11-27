@@ -22,6 +22,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
+import android.util.Log;
 
 import com.example.android.persistence.db.DatabaseCreator;
 import com.example.android.persistence.db.entity.TodoTaskEntity;
@@ -48,12 +49,14 @@ public class TodoTaskListViewModel extends AndroidViewModel {
                 new Function<Boolean, LiveData<List<TodoTaskEntity>>>() {
             @Override
             public LiveData<List<TodoTaskEntity>> apply(Boolean isDbCreated) {
+                Log.w("databaseCreated changed", isDbCreated.toString());
                 if (!Boolean.TRUE.equals(isDbCreated)) { // Not needed here, but watch out for null
                     //noinspection unchecked
                     return ABSENT;
                 } else {
                     //noinspection ConstantConditions
-                    return databaseCreator.getDatabase().todoTaskDao().loadAllTodoTasks();
+                    LiveData <List<TodoTaskEntity>> todoTaskEntity = databaseCreator.getDatabase().todoTaskDao().loadAllTodoTasks();
+                    return todoTaskEntity;
                 }
             }
         });
