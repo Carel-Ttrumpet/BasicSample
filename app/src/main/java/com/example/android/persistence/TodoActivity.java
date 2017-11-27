@@ -1,5 +1,6 @@
 package com.example.android.persistence;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,9 +13,9 @@ public class TodoActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             TodoListFragment fragment = new TodoListFragment();
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, fragment, TodoListFragment.TAG).commit();
+            FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.fragment_container, fragment, TodoListFragment.TAG);
+            transaction.commit();
         }
     }
 }

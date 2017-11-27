@@ -4,20 +4,20 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.persistence.databinding.TodoListFragmentBinding;
 import com.example.android.persistence.db.entity.TodoTaskEntity;
+import com.example.android.persistence.model.TodoTask;
 import com.example.android.persistence.ui.TodoTaskAdapter;
 
+import com.example.android.persistence.ui.TodoTaskClickCallback;
 import com.example.android.persistence.viewmodel.TodoTaskListViewModel;
 
 import java.util.List;
@@ -37,19 +37,15 @@ public class TodoListFragment extends LifecycleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.todo_list_fragment, container, false);
-        mTodoItemAdapter = new TodoTaskAdapter();
-
+        mTodoItemAdapter = new TodoTaskAdapter(mTodoTaskClickCallback);
         mBinding.todoList.setAdapter(mTodoItemAdapter);
-
         return mBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final TodoTaskListViewModel viewModel =
-                ViewModelProviders.of(this).get(TodoTaskListViewModel.class);
-
+        final TodoTaskListViewModel viewModel = ViewModelProviders.of(this).get(TodoTaskListViewModel.class);
         subscribeUi(viewModel);
     }
 
@@ -67,6 +63,18 @@ public class TodoListFragment extends LifecycleFragment {
             }
         });
     }
+
+    private final TodoTaskClickCallback mTodoTaskClickCallback = new TodoTaskClickCallback() {
+        @Override
+        public void onClick(TodoTask todoTask) {
+
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                Boolean complete = todoTask.isCompleted();
+                Log.i("onClick TodoTask", complete.toString());
+                todoTask.setCompleted(!complete);
+            }
+        }
+    };
 
 
 }

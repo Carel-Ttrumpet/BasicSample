@@ -91,11 +91,7 @@ public class DatabaseCreator {
                 context.deleteDatabase(DATABASE_NAME);
 
                 // Build the database!
-                AppDatabase db = Room.databaseBuilder(context.getApplicationContext(),
-                        AppDatabase.class, DATABASE_NAME).build();
-
-                // Add a delay to simulate a long-running operation
-                //addDelay();
+                AppDatabase db = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME).build();
 
                 // Add some data to the database
                 DatabaseInitUtil.initializeDb(db);

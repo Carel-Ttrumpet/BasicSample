@@ -18,6 +18,7 @@ package com.example.android.persistence.ui;
 
 import android.databinding.DataBindingUtil;
 
+import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +36,12 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TodoTaskAdapter.TodoTa
 
     List<? extends TodoTask> mTodoList;
 
+    @Nullable
+    private final TodoTaskClickCallback mTodoClickCallback;
+
+    public TodoTaskAdapter(@Nullable TodoTaskClickCallback clickCallback) {
+        mTodoClickCallback = clickCallback;
+    }
 
     public void setTodoList(final List<? extends TodoTask> todoList) {
         if (mTodoList == null) {
@@ -77,6 +84,7 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TodoTaskAdapter.TodoTa
         TodoItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.todo_item,
                         parent, false);
+        binding.setCallback(mTodoClickCallback);
         return new TodoTaskViewHolder(binding);
     }
 
